@@ -17,12 +17,7 @@ import {
   
     @SubscribeMessage('events')
     findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-      console.log("Get event message")
-      return from([1, 2]).pipe(map(item => ({ event: 'events', data: item })));
-    }
-  
-    @SubscribeMessage('identity')
-    async identity(@MessageBody() data: number): Promise<number> {
-      return data;
+      console.log("Get event message " + data)
+      return data
     }
   }

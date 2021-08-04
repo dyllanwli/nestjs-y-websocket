@@ -9,6 +9,36 @@ import QuillCursors from 'quill-cursors'
 Quill.register('modules/cursors', QuillCursors)
 
 window.addEventListener('load', () => {
+  // try nestjs ws
+  const EventSocket = new WebSocket('ws://localhost:3000');
+  EventSocket.onopen = function() {
+    console.log('Connected');
+    EventSocket.send(
+      JSON.stringify({
+        event: 'events',
+        data: 'test-events',
+      }),
+    );
+    EventSocket.onmessage = function(data) {
+      console.log(data);
+    };
+  };
+  const YjsSocket = new WebSocket('ws://localhost:3000/yjs');
+  YjsSocket.onopen = function() {
+    console.log('Connected');
+    YjsSocket.send(
+      JSON.stringify({
+        event: 'yjs',
+        data: 'yjs-events',
+      }),
+    );
+    YjsSocket.onmessage = function(data) {
+      console.log(data);
+    };
+  };
+
+
+
   const ydoc = new Y.Doc()
   const provider = new WebsocketProvider('ws://localhost:8081', 'demo-room', ydoc)
   const ytext = ydoc.getText('quill')

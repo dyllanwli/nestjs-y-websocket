@@ -10,7 +10,7 @@ const subClient = pubClient.duplicate();
 const redisAdapter = createAdapter({ pubClient, subClient });
 
 // test redis client
-pubClient.set("test-key", "test-value", RedisClient.print);
+pubClient.set("test-key", "test-value-redis", RedisClient.print);
 subClient.get("test-key", (err, reply) => {
   console.log(reply)
 });

@@ -1,6 +1,5 @@
 const WebSocket = require('ws')
 const http = require('http')
-const StaticServer = require('node-static').Server
 const setupWSConnection = require('y-websocket/bin/utils.js').setupWSConnection
 
 const host = process.env.HOST || 'localhost'
@@ -15,10 +14,6 @@ const wss = new WebSocket.Server({ noServer: true })
 wss.on('connection', setupWSConnection)
 
 server.on('upgrade', (request, socket, head) => {
-  // You may check auth of request here..
-  /**
-   * @param {any} ws
-   */
   const handleAuth = ws => {
     wss.emit('connection', ws, request)
   }

@@ -10,6 +10,12 @@
             data: 'test',
           }),
         );
+        socket.send(
+          JSON.stringify({
+            event: 'identity',
+            data: 666,
+          }),
+        );
         socket.onmessage = function(data) {
           console.log("getting data")
           console.log(data);
