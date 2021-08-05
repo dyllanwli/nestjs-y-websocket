@@ -2,7 +2,7 @@
 with y-websocket
 
 
-## start demo server
+## 1 start demo server
 ```
 npm i 
 npm run start:dev
@@ -10,7 +10,7 @@ npm run start:dev
 + `src/yjs` and `src/events` are custom modules for ws gateway settings
 + `src/module` adapt Yjs websocket with naive websocket server
 
-## start y-client
+## 2 start y-client
 simple y-quill collaborative editor client
 ```
 cd y-client
