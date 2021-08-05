@@ -2,8 +2,15 @@
 with y-websocket
 
 
+## start demo server
+```
+npm i 
+npm run start:dev
+```
+yjs and events are custom modules for ws gateway settings
 
-## y-client 
+
+## start y-client
 simple y-quill collaborative editor client
 ```
 cd y-client
@@ -11,12 +18,6 @@ npm i
 npm run start
 ```
 then open http://localhost:8080/quill.html
-
-## start demo
-```
-npm i 
-npm run start:dev
-```
 
 
 ## other
