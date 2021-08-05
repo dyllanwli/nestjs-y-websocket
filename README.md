@@ -7,8 +7,8 @@ with y-websocket
 npm i 
 npm run start:dev
 ```
-yjs and events are custom modules for ws gateway settings
-
++ `src/yjs` and `src/events` are custom modules for ws gateway settings
++ `src/module` adapt Yjs websocket with naive websocket server
 
 ## start y-client
 simple y-quill collaborative editor client
