@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { WsAdapter } from '@nestjs/platform-ws'; // ws adapter
-import { RedisIoAdapter } from './adapters/redis-io.adapter'; // custom adapter
+// import { RedisIoAdapter } from './adapters/redis-io.adapter'; // custom adapter
 import { YwsAdapter } from './adapters/yws.adapter'; // custom adapter
 import { AppModule } from './app.module';
 

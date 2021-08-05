@@ -15,20 +15,14 @@ import WebSocket from 'ws'
 
 // const wss = new WebSocket.Server({ noServer: true })
 
-@WebSocketGateway({ path: '/yjs' })
+@WebSocketGateway(8082, { path: '/yjs' })
 export class YjsGateway {
   @WebSocketServer()
   server: WebSocket;
 
   @SubscribeMessage('yjs')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
+  findAll(@MessageBody() data: any): any {
     console.log("Get yjs message " + data)
-    return from([1, 2]).pipe(map(item => ({ event: 'yjs', data: item })));
-  }
-
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
-    console.log("Get event message " + data)
     return data;
   }
 }

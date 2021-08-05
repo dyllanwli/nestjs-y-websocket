@@ -3,16 +3,19 @@ import { WebSocketAdapter, INestApplicationContext } from '@nestjs/common';
 import { MessageMappingProperties } from '@nestjs/websockets';
 import { Observable, fromEvent, EMPTY } from 'rxjs';
 import { mergeMap, filter } from 'rxjs/operators';
+import * as YwsServer from '../module/yws.server'
 
 export class YwsAdapter implements WebSocketAdapter {
   constructor(private app: INestApplicationContext) {}
 
   create(port: number, options: any = {}): any {
+    console.log("adapter creating at " + port + " " + JSON.stringify(options))
     return new WebSocket.Server({ port, ...options });
   }
 
   bindClientConnect(server, callback: Function) {
-    server.on('connection', callback);
+    console.log("bind connection")
+    server.on('connection', YwsServer.setupWSConnection);
   }
 
   bindMessageHandlers(

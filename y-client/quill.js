@@ -9,27 +9,33 @@ import QuillCursors from 'quill-cursors'
 Quill.register('modules/cursors', QuillCursors)
 
 window.addEventListener('load', () => {
-  // try nestjs ws
-  const EventSocket = new WebSocket('ws://localhost:3000');
-  EventSocket.onopen = function() {
-    console.log('Connected');
-    EventSocket.send(
-      JSON.stringify({
-        event: 'events',
-        data: 'test-events',
-      }),
-    );
-    EventSocket.onmessage = function(data) {
-      console.log(data);
-    };
-  };
-  const YjsSocket = new WebSocket('ws://localhost:3000/yjs');
+  const ydoc = new Y.Doc()
+
+
+
+
+  // to test on naive ws on nestjs uncomment code below then change an adapter on nest
+  // const EventSocket = new WebSocket('ws://localhost:3000');
+  // EventSocket.onopen = function() {
+  //   console.log('Connected');
+  //   EventSocket.send(
+  //     JSON.stringify({
+  //       event: 'events',
+  //       data: 'test-events',
+  //     }),
+  //   );
+  //   EventSocket.onmessage = function(data) {
+  //     console.log(data);
+  //   };
+  // };
+  // for regular connection
+  const YjsSocket = new WebSocket('ws://localhost:8082/yjs');
   YjsSocket.onopen = function() {
-    console.log('Connected');
+    console.log('Nest Connected');
     YjsSocket.send(
       JSON.stringify({
         event: 'yjs',
-        data: 'yjs-events',
+        data: ydoc,
       }),
     );
     YjsSocket.onmessage = function(data) {
@@ -37,10 +43,7 @@ window.addEventListener('load', () => {
     };
   };
 
-
-
-  const ydoc = new Y.Doc()
-  const provider = new WebsocketProvider('ws://localhost:8081', 'demo-room', ydoc)
+  const provider = new WebsocketProvider('ws://localhost:8082', 'yjs', ydoc)
   const ytext = ydoc.getText('quill')
   const editorContainer = document.createElement('div')
   editorContainer.setAttribute('id', 'editor')
